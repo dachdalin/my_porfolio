@@ -3,9 +3,9 @@
         <Toast v-if="showToastVisible" :type="toastType" :message="toastMessage" @close="showToastVisible = false"  />
         <div class="container bg-gray-100 dark:bg-gray-900 ">
             <div class="flex items-center justify-between py-8">
-                <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200">Technology</h1>
+                <h1 class="text-4xl font-bold text-gray-800 dark:text-white">Project</h1>
                 <button @click="openCreateModal" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Add Technology
+                    Add Project
                 </button>
             </div>
             <div v-if="loading" class="flex justify-center my-8">
@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="product in products.data" :key="product.id">
+                        <tr v-for="product in projects.data" :key="product.id">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ product.id }}
                             </td>
@@ -46,12 +46,12 @@
                                 {{ product.title }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                {{ truncateText(product.description) }}
+                                {{ truncateString(product.description, 50) }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div v-if="product.tech && product.tech.length">
                                     <div class="flex flex-wrap gap-2">
-                                        <span v-for="(tech, index) in formatTechTags(product.tech)" :key="index"
+                                        <span v-for="(tech, index) in formatTechTagP(product.tech)" :key="index"
                                             class="bg-blue-600 text-white rounded-lg py-1 px-2 flex items-center">
                                             {{ tech }}
                                         </span>
@@ -74,15 +74,15 @@
                     </tbody>
                 </table>
             </div>
-            <div v-if="products.data && products.data.length > 0" class="mt-4 flex justify-between items-center">
-                <div class="text-sm text-gray-700 dark:text-gray-400">
-                    Showing {{ products.from }} to {{ products.to }} of
-                    {{ products.total }} results
+            <div v-if="projects.data && projects.data.length > 0" class="mt-4 flex justify-between items-center">
+                <div class="text-sm text-gray-700 dark:text-gray-200">
+                    Showing {{ projects.from }} to {{ projects.to }} of
+                    {{ projects.total }} results
                 </div>
                 <div class="flex space-x-2">
                     <button v-for="page in getPageNumbers()" :key="page" @click="fetchProducts(page)" :class="[
                         'px-3 py-1 rounded',
-                        page === products.current_page
+                        page === projects.current_page
                             ? 'bg-blue-600 text-white'
                             : 'bg-gray-200 hover:bg-gray-300',
                     ]">
@@ -91,10 +91,10 @@
                 </div>
             </div>
             <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-                <div class="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-3xl">
+                <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-auto max-h-screen scroll-my-3">
                     <div class="p-6">
-                        <h2 class="text-xl font-bold mb-4 text-gray-200 dark:text-gray-200">
-                            {{ isEditing ? "Edit Technology" : "Add New Technology" }}
+                        <h2 class="text-xl font-bold mb-4">
+                            {{ isEditing ? "Edit Project" : "Add New Project" }}
                         </h2>
 
                         <form @submit.prevent="submitForm">
@@ -115,7 +115,22 @@
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                      />
                             </div>
-
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="url">
+                                    URL
+                                </label>
+                                <input v-model="form.url" id="url" type="text"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    required />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="github">
+                                    GitHub
+                                </label>
+                                <input v-model="form.github" id="github" type="text"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    required />
+                            </div>
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
                                     Description
@@ -143,6 +158,17 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
+                                Image
+                                </label>
+                                <input type="file" id="image" @change="onImageChange" accept="image/*"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                                <div v-if="imagePreview" class="mt-4">
+                                <p>Image Preview:</p>
+                                <img :src="imagePreview" alt="Image Preview" class="w-32 mt-2 rounded">
+                                </div>
+                            </div>
                             <div class="flex justify-end space-x-2">
                                 <button type="button" @click="showModal = false"
                                     class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
@@ -164,7 +190,7 @@
                     <div class="p-6 text-center">
                         <h2 class="text-xl font-bold mb-4">Confirm Delete</h2>
                         <p class="mb-4">
-                            Are you sure you want to delete the Technology "{{
+                            Are you sure you want to delete the Project "{{
                                 productToDelete?.title
                             }}"? This action cannot be undone.
                         </p>
@@ -191,14 +217,14 @@ import AppLayout from "../layouts/AppLayout.vue";
 import api from "../../services/api.js";
 import Toast from "../Toast.vue";
 export default {
-    name: "Technology",
+    name: "Project",
     components: {
         AppLayout,
         Toast,
     },
     data() {
         return {
-            products: {
+            projects: {
                 data: [],
                 current_page: 1,
                 from: 0,
@@ -219,6 +245,7 @@ export default {
             showToastVisible: false,
             toastMessage: '',
             toastType: '',
+            imagePreview: null,
         };
     },
     created() {
@@ -234,20 +261,27 @@ export default {
         removeTech(index) {
             this.form.tech.splice(index, 1);
         },
-        formatTechTags(tech) {
+        formatTechTagP(tech) {
             return JSON.parse(tech).map((item) => item);
         },
-        truncateText(text, length = 50) {
-            if (text.length > length) {
-                return text.substring(0, length) + "...";
+        onImageChange(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imagePreview = e.target.result;
+                };
+                reader.readAsDataURL(file);
             }
-            return text;
         },
         getEmptyForm() {
             return {
                 title: "",
                 description: "",
                 tech: [],
+                url: "",
+                image: "",
+                github: "",
             };
         },
         async fetchProducts(page = 1) {
@@ -255,8 +289,8 @@ export default {
             this.error = null;
 
             try {
-                const response = await api.getProducts(page);
-                this.products = response.data.data;
+                const response = await api.getProject(page);
+                this.projects = response.data.data;
             } catch (error) {
                 console.error("Error fetching products:", error);
                 this.error = "Failed to load products. Please try again.";
@@ -282,13 +316,13 @@ export default {
 
             try {
                 if (this.isEditing) {
-                    await api.updateProduct(this.form.id, this.form);
+                    await api.updateProject(this.form.id, this.form);
                 } else {
-                    await api.createProduct(this.form);
+                    await api.createProject(this.form);
                 }
 
                 this.showModal = false;
-                this.fetchProducts(this.products.current_page);
+                this.fetchProducts(this.projects.current_page);
                 this.showToast("success", this.isEditing ? "Product updated successfully!" : "Product created successfully!");
             } catch (error) {
                 console.error("Error saving product:", error);
@@ -305,9 +339,9 @@ export default {
             this.deleteSubmitting = true;
 
             try {
-                await api.deleteProduct(this.productToDelete.id);
+                await api.deleteProject(this.productToDelete.id);
                 this.showDeleteModal = false;
-                this.fetchProducts(this.products.current_page);
+                this.fetchProducts(this.projects.current_page);
                 this.showToast("success", "Product deleted successfully!");
             } catch (error) {
                 console.error("Error deleting product:", error);
@@ -318,7 +352,7 @@ export default {
         },
         getPageNumbers() {
             const pages = [];
-            for (let i = 1; i <= this.products.last_page; i++) {
+            for (let i = 1; i <= this.projects.last_page; i++) {
                 pages.push(i);
             }
             return pages;
@@ -333,6 +367,12 @@ export default {
         },
         dismissToast() {
             this.showToastVisible = false;
+        },
+        truncateString(str, length) {
+            if (str.length > length) {
+                return str.substring(0, length) + "...";
+            }
+            return str;
         },
     },
 };

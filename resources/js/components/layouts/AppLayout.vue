@@ -14,10 +14,10 @@
                     <router-link to="/dashboard" class="text-white hover:text-gray-300">Dashboard</router-link>
                     <router-link to="/admin/technologies"
                         class="text-white hover:text-gray-300">Technology</router-link>
+                    <router-link to="/admin/projects" class="text-white hover:text-gray-300">Project</router-link>
+                    <router-link to="/admin/experiense" class="text-white hover:text-gray-300">Experiense</router-link>
+                    <router-link to="/admin/education" class="text-white hover:text-gray-300">Education</router-link>
                     <router-link to="/admin/settings" class="text-white hover:text-gray-300">Settings</router-link>
-                    <!-- <router-view>
-
-            </router-view> -->
                 </div>
 
                 <!-- Right Menu - Desktop -->
@@ -90,11 +90,11 @@
         </nav>
 
         <!-- Main Content (Children Pages) -->
-        <main class="flex-grow">
+        <main class="flex-grow bg-gray-100 dark:bg-gray-900">
             <slot></slot>
         </main>
 
-        <footer class="d-flex flex-column bg-gray-800 text-white p-4 mt-4" color="teal" rounded="lg">
+        <footer class="d-flex flex-column bg-gray-800 text-white p-4" color="teal" rounded="lg">
             <div class="flex w-100 align-center justify-between px-4 py-2">
                 <strong>&copy; 2025 Admin Panel. All Rights Reserved.</strong>
 

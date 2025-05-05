@@ -101,7 +101,7 @@ class TechnologyController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:technologies,slug,' . $id,
+            'slug' => 'nullable|string|max:255|unique:technologies,slug,' . $id,
             'description' => 'nullable|string',
             'tech' => 'nullable|array',
         ]);
@@ -112,7 +112,7 @@ class TechnologyController extends Controller
             ], 422);
         }
         try {
-            $technology = Technology::where('slug', $id)->first();
+            $technology = Technology::where('id', $id)->first();
             if (!$technology) {
                 return response()->json([
                     'success' => false,
@@ -139,7 +139,7 @@ class TechnologyController extends Controller
     public function destroy(string $id)
     {
         try {
-            $technology = Technology::where('slug', $id)->first();
+            $technology = Technology::where('id', $id)->first();
             if (!$technology) {
                 return response()->json([
                     'success' => false,

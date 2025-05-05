@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,5 +57,23 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return response()->json(['user' => $user]);
+    }
+
+    public function updateUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password){
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+        return response()->json(['success' => true, 'message' => 'User updated successfully']);
     }
 }
