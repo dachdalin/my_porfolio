@@ -51,38 +51,4 @@ class Experiense extends Model
     {
         $this->attributes['start_date'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
     }
-    public function setEndDateAttribute($value)
-    {
-        $this->attributes['end_date'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
-    }
-    public function getStartDateFormattedAttribute()
-    {
-        return \Carbon\Carbon::parse($this->start_date)->format('d M Y');
-    }
-    public function getEndDateFormattedAttribute()
-    {
-        return \Carbon\Carbon::parse($this->end_date)->format('d M Y');
-    }
-    public function getDurationAttribute()
-    {
-        if ($this->end_date) {
-            return \Carbon\Carbon::parse($this->start_date)->diffInMonths(\Carbon\Carbon::parse($this->end_date));
-        }
-        return \Carbon\Carbon::parse($this->start_date)->diffInMonths(now());
-    }
-    public function getDurationFormattedAttribute()
-    {
-        if ($this->end_date) {
-            return \Carbon\Carbon::parse($this->start_date)->diffInMonths(\Carbon\Carbon::parse($this->end_date)) . ' months';
-        }
-        return \Carbon\Carbon::parse($this->start_date)->diffInMonths(now()) . ' months';
-    }
-    public function getStartDateFormatted()
-    {
-        return \Carbon\Carbon::parse($this->start_date)->format('d M Y');
-    }
-    public function getEndDateFormatted()
-    {
-        return \Carbon\Carbon::parse($this->end_date)->format('d M Y');
-    }
 }

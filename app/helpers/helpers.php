@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Config;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Artisan;
@@ -381,17 +382,17 @@ if (!function_exists('format_percentage')) {
     }
 }
 
-// if(!function_exists('getWebsiteConfig')){
-//     function getWebsiteConfig($key)
-//     {
-//         $config = WebsiteSetup::where('key', $key)->first();
-//         if($config) {
-//             return $config->value;
-//         }
-//         return null;
-//     }
+if(!function_exists('getWebsiteConfig')){
+    function getWebsiteConfig($key)
+    {
+        $config = Config::where('key', $key)->first();
+        if($config) {
+            return $config->value;
+        }
+        return null;
+    }
 
-// }
+}
 if (!function_exists('hex2rgba')) {
     function hex2rgba($hex, $alpha = 1.0) {
 

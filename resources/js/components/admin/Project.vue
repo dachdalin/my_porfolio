@@ -38,9 +38,14 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="product in projects.data" :key="product.id">
+                        <tr v-if="projects.data.length === 0">
+                            <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                                No projects found.
+                            </td>
+                        </tr>
+                        <tr v-for="(product,index) in projects.data" :key="product.id">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                {{ product.id }}
+                                {{ index + 1 + (projects.current_page - 1) * projects.per_page }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ product.title }}

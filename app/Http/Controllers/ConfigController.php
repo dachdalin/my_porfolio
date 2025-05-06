@@ -30,7 +30,11 @@ class ConfigController extends Controller
                 $old_image = Config::where('key', 'meta_image')->first();
                 $imagePath=ImageHelper::update('images/meta', $old_image, $request->file('meta_image'));
             }
-
+            // Check if the personal_image is present and valid
+            if ($request->hasFile('personal_image')) {
+                $old_image = Config::where('key', 'personal_image')->first();
+                $imagePath=ImageHelper::update('images/personal', $old_image, $request->file('personal_image'));
+            }
             $settings = [
                 'site_name' => $request->site_name,
                 'site_email' => $request->site_email,
@@ -41,6 +45,9 @@ class ConfigController extends Controller
                 'google_tags' => $request->google_tags,
                 'google_analytics' => $request->google_analytics,
                 'meta_image' => isset($imagePath) ? $imagePath : null,
+                'about_me' => $request->about_me,
+                'get_toch' => $request->get_toch,
+                'personal_image' => $request->personal_image,
             ];
             foreach ($settings as $key => $value) {
                 Config::updateOrCreate(['key' => $key], ['value' => $value]);

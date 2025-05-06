@@ -52,15 +52,6 @@
 
         window.APP_URL = @json(env('APP_URL'));
         window.USER_ID = @json(auth()->id());
-        window.addEventListener('load', function () {
-            // Basic
-            flatpickr('#flatpickr-date', {
-            monthSelectorType: 'static'
-            })
-        });
-    </script>
-    <script>
-
     </script>
 </body>
 </html>

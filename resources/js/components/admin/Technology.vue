@@ -16,7 +16,7 @@
             <div v-else-if="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 {{ error }}
             </div>
-            <div v-else class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div v-else class="bg-white shadow-md dark:shadow-custom-dark rounded-lg overflow-hidden">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -37,10 +37,15 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="product in products.data" :key="product.id">
+                    <tbody class="bg-white dark:bg-gray-900 dark:text-gray-200 divide-y divide-gray-200">
+                        <tr v-if="products.data.length === 0">
+                            <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-200">
+                                No products found.
+                            </td>
+                        </tr>
+                        <tr v-for="(product,index) in products.data" :key="product.id">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                {{ product.id }}
+                                {{ index + 1 + (products.current_page - 1) * products.per_page }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{ product.title }}
@@ -58,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div v-else>
-                                    <span class="text-gray-500">No technologies listed</span>
+                                    <span class="text-gray-500 dark:text-gray-200">No technologies listed</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -75,7 +80,7 @@
                 </table>
             </div>
             <div v-if="products.data && products.data.length > 0" class="mt-4 flex justify-between items-center">
-                <div class="text-sm text-gray-700 dark:text-gray-400">
+                <div class="text-sm text-gray-700 dark:text-gray-200">
                     Showing {{ products.from }} to {{ products.to }} of
                     {{ products.total }} results
                 </div>
@@ -99,39 +104,39 @@
 
                         <form @submit.prevent="submitForm">
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                                <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="title">
                                     Title
                                 </label>
                                 <input v-model="form.title" id="title" type="text"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="shadow appearance-none dark:text-white dark:bg-gray-900 border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     required />
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="slug">
+                                <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="slug">
                                     Slug (optional)
                                 </label>
                                 <input v-model="form.slug" id="slug" type="text"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="shadow appearance-none border dark:text-white dark:bg-gray-900 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                      />
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+                                <label class="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2" for="description">
                                     Description
                                 </label>
                                 <textarea v-model="form.description" id="description"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="shadow appearance-none border dark:text-white dark:bg-gray-900 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     rows="3"></textarea>
                             </div>
 
                             <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="tech">
+                                <label class="block text-gray-700 text-sm dark:text-gray-200 font-bold mb-2" for="tech">
                                     Tech
                                 </label>
                                 <input v-model="techInput" @keydown.enter.prevent="addTech"
                                     @keydown.tab.prevent="addTech" id="tech" type="text"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    class="shadow appearance-none border dark:bg-gray-900 dark:text-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     placeholder="Add tech (e.g., PHP, Laravel)" />
                             </div>
                             <div class="mb-4">

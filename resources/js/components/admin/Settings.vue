@@ -12,7 +12,7 @@
                                     Name</label>
                                 <div class="mt-2">
                                     <input type="text" v-model="form.site_name" id="site-name" autocomplete="given-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
 
@@ -21,21 +21,21 @@
                                     Email</label>
                                 <div class="mt-2">
                                     <input type="text" v-model="form.site_email" id="site-email" autocomplete="family-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
                             <div class="sm:col-span-3">
                                 <label for="link-in" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-200">Linkin</label>
                                 <div class="mt-2">
                                     <input type="text" v-model="form.link_in" id="link-in" autocomplete="family-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
                             <div class="sm:col-span-3">
                                 <label for="link-git" class="block text-sm/6 font-medium text-gray-900 dark:text-gray-200">Link Git</label>
                                 <div class="mt-2">
                                     <input type="text" v-model="form.link_git" id="link-git" autocomplete="family-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
                             <div class="sm:col-span-full">
@@ -43,7 +43,7 @@
                                     Keyword</label>
                                 <div class="mt-2">
                                     <input type="text" v-model="form.site_keyword" id="site-email" autocomplete="family-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
                             <div class="col-span-full">
@@ -51,7 +51,23 @@
                                     class="block text-sm/6 font-medium text-gray-900 dark:text-gray-200">Description</label>
                                 <div class="mt-2">
                                     <textarea v-model="form.description" id="descrition" rows="3"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"></textarea>
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-span-full">
+                                <label for="about_me"
+                                    class="block text-sm/6 font-medium text-gray-900 dark:text-gray-200">About Me</label>
+                                <div class="mt-2">
+                                    <textarea v-model="form.about_me" id="about_me" rows="3"
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-span-full">
+                                <label for="in_toch"
+                                    class="block text-sm/6 font-medium text-gray-900 dark:text-gray-200">Get In Toch</label>
+                                <div class="mt-2">
+                                    <textarea v-model="form.get_toch" id="in_toch" rows="3"
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"></textarea>
                                 </div>
                             </div>
                             <div class="sm:col-span-3">
@@ -59,7 +75,7 @@
                                     Tags</label>
                                 <div class="mt-2">
                                     <input type="text" v-model="form.google_tags" id="google-tags" autocomplete="family-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
                             <div class="sm:col-span-3">
@@ -68,7 +84,7 @@
                                 <div class="mt-2">
                                     <input type="text" v-model="form.google_analytics" id="google-analytics"
                                         autocomplete="family-name"
-                                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                                        class="block w-full dark:bg-gray-900 dark:text-white rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                 </div>
                             </div>
                             <div class="sm:col-span-full">
@@ -94,7 +110,29 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="sm:col-span-full">
+                                <label for="meta_image" class="block text-sm font-medium text-gray-900 dark:text-gray-200">Personal
+                                    Image</label>
+                                <div class="mt-2 flex justify-center rounded-lg border border-dashed px-6 py-10">
+                                    <div class="text-center">
+                                        <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path
+                                                d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" />
+                                        </svg>
+                                        <label for="meta_image" class="cursor-pointer text-indigo-600 hover:text-indigo-500">
+                                        <span>Click to upload image</span>
+                                        </label>
+                                        <div class="mt-4">
+                                            <input type="file" id="meta_image" @change="onImageChangePersonal" class="sr-only">
+                                        </div>
+                                        <p class="text-xs text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                        <p v-if="imagePreviewP" class="mt-4">Preview:</p>
+                                        <img v-if="imagePreviewP" :src="imagePreviewP" alt="Preview"
+                                            class="w-32 mt-2 rounded">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,6 +169,9 @@ export default {
                 google_tags: "",
                 google_analytics: "",
                 meta_image: null,
+                personal_image: null,
+                get_toch: "",
+                about_me: "",
             },
             imagePreview: null,
             showToastVisible: false,
@@ -153,6 +194,7 @@ export default {
 
                 this.form = { ...this.form, ...settings };
                 this.imagePreview = settings.meta_image ? `${this.apUrl}/images/meta/${settings.meta_image}` : null;
+                this.imagePreviewP = settings.personal_image ? `${this.apUrl}/images/personal/${settings.personal_image}` : null;
 
             } catch (error) {
                 this.showToast('error', 'Error fetching settings');
@@ -164,6 +206,13 @@ export default {
             if (file) {
                 this.form.meta_image = file;
                 this.imagePreview = URL.createObjectURL(file);
+            }
+        },
+        onImageChangePersonal(event) {
+            const file = event.target.files[0];
+            if (file) {
+                this.form.personal_image = file;
+                this.imagePreviewP = URL.createObjectURL(file);
             }
         },
         async submitForm() {
